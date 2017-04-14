@@ -8,8 +8,8 @@
  */
 dirset_t *add_node_end(dirset_t **head, const char *dir)
 {
-	list_t *endnode;
-	list_t *travelnode;
+	dirset_t *endnode;
+	dirset_t *travelnode;
 
 	if (head == NULL)
 		return (NULL);

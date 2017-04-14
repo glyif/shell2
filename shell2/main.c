@@ -18,11 +18,15 @@ int main(void)
 		getline(&line, &linelen, stdin);
 
 		tok_args = tokenizer(line);
+		findpath(tok_args);
 		pid = fork();
 		if (pid < 0)
 			perror("Fork did not work");
 		else if (pid == 0)
+		{
 			execve(tok_args[0], tok_args, environ);
+			perror("Error");
+		}
 		else
 			pid = wait(&status);
 	}

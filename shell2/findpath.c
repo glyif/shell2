@@ -1,43 +1,48 @@
 #include"shell2.h"
 /**
- *
- *
- *
+ * findpath - function to create full path argument
+ * @tok_args: getline input that has been tokenized
+ * Return: new argument with the completed path
  */
-char **new_arg(char **tok_args)
+char **findpath(char **tok_args)
 {
-	list_t tmp;
+	dirset_t *head;
 	char *buff;
 	char *buffcopy;
 
-	path_linklist();
-	tmp = head;
+	head = path_link();
 
-	while(tmp != NULL)
+	while(head != NULL)
 	{
-		buff = malloc(sizeof(char) * (_strlen(tok_args[0] + _strlen(tmp->dir + 2))));
+/** is this a safe way to free? **/
+		buff = malloc(sizeof(char) * (_strlen(tok_args[0]) + _strlen(head->dir) + 2));
 		if(buff == NULL)
-			exit;
-		if(access(buff, F_OK) == 0)
+			return(0);
+		pathcat(buff, head->dir, tok_args); /**put in freakin concat file**/
+		if(access(buff, X_OK) == 0)
 		{
+/**lacking confidence on how accurate this is **/
 			buffcopy = _strdup(buff);
 			tok_args[0] = buffcopy;
 			free(buff);
-			return(tok_args[0]);
+			/**free linked list function to call here**/
+			return(tok_args);
 		}
 		else
 		{
 			free(buff);
-			tmp = tmp->next;
+			head = head->next;
 		}
 	}
+/**free linked list function to call here **/
+	return(tok_args);
 }
 /**
  *
  *
  *
  */
-dirset_t path_linklist(void)
+dirset_t *path_link(void)
 {
 	dirset_t *head;
 	char *full_path;

@@ -18,7 +18,7 @@ int _strlen(const char *s)
  * @str: string that is being passed
  * Return: pointer
  */
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 	char *str2;
 	int i;
@@ -29,7 +29,7 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 	length = _strlen(str);
-	str2 = malloc(length + 1 * sizeof(char));
+	str2 = malloc(length + 1 * sizeof(const char));
 	i = 0;
 	while (i < length)
 	{
@@ -45,19 +45,23 @@ char *_strdup(char *str)
  *
  *
  */
-char *path_cat(char *dest, char *src)
+char *pathcat(char *dest, char *dir, char **tok_args)
 {
-	int i, j, destlen;
+	unsigned int i, j;
 
-	destlen = _strlen(dest);
-	i = destlen;
+	i = 0;
 	j = 0;
-	dest[i] = '/';
-	i++;
 
-	while(src[j] != '\0')
+	while(dir[i] != '\0')
 	{
-		dest[i] = src[j];
+		dest[i] = dir[i];
+		i++;
+	}
+	i++;
+	dir[i] = '/';
+	while(tok_args[j] != '\0')
+	{
+		dest[i] = tok_args[j];
 		i++;
 		j++;
 	}

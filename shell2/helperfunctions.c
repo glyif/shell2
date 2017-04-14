@@ -68,3 +68,43 @@ char *pathcat(char *dest, char *dir, char **tok_args)
 	dest[i] = '\0';
 	return(dest);
 }
+
+/**
+ * _strcmp - function to compare strings
+ * @s1: first string to compare
+ * @s2: second string to compare
+ * Return: integer
+ */
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0;
+
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+		i++;
+	}
+	return (0);
+}
+
+/**
+ * _strcpy - function to copy string to new dest
+ * @dest: where the string is being assigned
+ * @src: where it is coming from
+ * Return: a char
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+	int length;
+
+	length = _strlen(src);
+	for (i = 0; i < length; i++)
+	{
+		dest[i] = src[i];
+	}
+	return ((char *)dest);
+}

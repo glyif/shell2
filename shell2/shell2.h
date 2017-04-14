@@ -27,5 +27,6 @@ char **findpath(char **tok_args);
 char *_strdup(const char *str);
 char *pathcat(char *buff, char *dir, char **tok_args);
 char *_getenv(const char *name);
-
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
 #endif

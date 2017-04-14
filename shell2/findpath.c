@@ -18,7 +18,7 @@ char **findpath(char **tok_args)
 		buff = malloc(sizeof(char) * (_strlen(tok_args[0]) + _strlen(head->dir) + 2));
 		if(buff == NULL)
 			return(0);
-		pathcat(buff, head->dir, tok_args); /**put in freakin concat file**/
+		pathcat(buff,head->dir, tok_args);
 		if(access(buff, X_OK) == 0)
 		{
 /**lacking confidence on how accurate this is **/

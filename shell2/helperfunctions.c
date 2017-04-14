@@ -61,7 +61,7 @@ char *pathcat(char *dest, char *dir, char **tok_args)
 	dir[i] = '/';
 	while(tok_args[j] != '\0')
 	{
-		dest[i] = tok_args[j];
+		dest[i] = tok_args[j][0];
 		i++;
 		j++;
 	}

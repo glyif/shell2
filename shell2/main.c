@@ -25,7 +25,7 @@ int main(void)
 		else if (pid == 0)
 		{
 			execve(tok_args[0], tok_args, environ);
-			perror("Error");
+			perror("Error in main after execve");
 		}
 		else
 			pid = wait(&status);

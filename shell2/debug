@@ -1,0 +1,59 @@
+==30454== Memcheck, a memory error detector
+==30454== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==30454== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==30454== Command: ./a.out
+==30454== 
+==30454== Invalid free() / delete / delete[] / realloc()
+==30454==    at 0x4C2BDEC: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30454==    by 0x400A91: path_link (findpath.c:69)
+==30454==    by 0x400A51: findpath (findpath.c:13)
+==30454==    by 0x400FB8: main (main.c:22)
+==30454==  Address 0x40115b is not stack'd, malloc'd or (recently) free'd
+==30454== 
+Error in main after execve: No such file or directory
+Error in main after execve: No such file or directory
+==30454== 
+==30454== HEAP SUMMARY:
+==30454==     in use at exit: 9,736 bytes in 4 blocks
+==30454==   total heap usage: 4 allocs, 1 frees, 9,736 bytes allocated
+==30454== 
+==30493== 
+==30493== HEAP SUMMARY:
+==30493==     in use at exit: 11,160 bytes in 6 blocks
+==30493==   total heap usage: 7 allocs, 3 frees, 19,352 bytes allocated
+==30493== 
+==30493== LEAK SUMMARY:
+==30493==    definitely lost: 2,848 bytes in 4 blocks
+==30493==    indirectly lost: 0 bytes in 0 blocks
+==30493==      possibly lost: 0 bytes in 0 blocks
+==30493==    still reachable: 8,312 bytes in 2 blocks
+==30493==         suppressed: 0 bytes in 0 blocks
+==30493== Rerun with --leak-check=full to see details of leaked memory
+==30493== 
+==30493== For counts of detected and suppressed errors, rerun with: -v
+==30493== ERROR SUMMARY: 2 errors from 1 contexts (suppressed: 0 from 0)
+==30454== LEAK SUMMARY:
+==30454==    definitely lost: 1,424 bytes in 2 blocks
+==30454==    indirectly lost: 0 bytes in 0 blocks
+==30454==      possibly lost: 0 bytes in 0 blocks
+==30454==    still reachable: 8,312 bytes in 2 blocks
+==30454==         suppressed: 0 bytes in 0 blocks
+==30454== Rerun with --leak-check=full to see details of leaked memory
+==30454== 
+==30454== For counts of detected and suppressed errors, rerun with: -v
+==30454== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==30570== 
+==30570== HEAP SUMMARY:
+==30570==     in use at exit: 2,968 bytes in 5 blocks
+==30570==   total heap usage: 7 allocs, 4 frees, 19,352 bytes allocated
+==30570== 
+==30570== LEAK SUMMARY:
+==30570==    definitely lost: 2,848 bytes in 4 blocks
+==30570==    indirectly lost: 0 bytes in 0 blocks
+==30570==      possibly lost: 0 bytes in 0 blocks
+==30570==    still reachable: 120 bytes in 1 blocks
+==30570==         suppressed: 0 bytes in 0 blocks
+==30570== Rerun with --leak-check=full to see details of leaked memory
+==30570== 
+==30570== For counts of detected and suppressed errors, rerun with: -v
+==30570== ERROR SUMMARY: 2 errors from 1 contexts (suppressed: 0 from 0)

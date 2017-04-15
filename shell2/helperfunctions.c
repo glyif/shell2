@@ -36,9 +36,9 @@ char *_strdup(const char *str)
 		str2[i] = str[i];
 		i++;
 	}
+	/* need to terminate string with null byte */
+	str2[i] = '\0';
 	return (str2);
-/** do I need to free here?? Why did this pass checker? **/
-	free(str2);
 }
 /**
  *

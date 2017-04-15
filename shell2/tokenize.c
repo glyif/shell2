@@ -12,7 +12,7 @@ char **tokenizer(char *line)
 
 	if(line == NULL)
 		perror("This is not what we want: ");
-	tok_args = malloc(sizeof(char*) * BUFF_SIZE);
+	tok_args = calloc(sizeof(char*), BUFF_SIZE);
 	if(tok_args == NULL)
 		perror("malloc failed");
 	token = strtok(line, " ");

@@ -8,29 +8,29 @@
  */
 dirset_t *add_node_end(dirset_t **head, const char *dir)
 {
-	dirset_t *endnode;
-	dirset_t *travelnode;
+	dirset_t *new_node, *temp;
+    
+	new_node = malloc(sizeof(dirset_t));
+    
+	if (new_node == NULL)
+        return (NULL);
 
-	if (head == NULL)
-		return (NULL);
+    new_node->dir = _strdup(dir);
+    new_node->next = NULL;
 
-	endnode = malloc(sizeof(dirset_t));
-	travelnode = malloc(sizeof(dirset_t));
+    if (!*head)
+    {
+        *head = new_node;
+    }
+    else
+    {
+        temp = *head;
 
-	if (*head == NULL)
-	{
-		*head = endnode;
-	}
-	if (travelnode == NULL)
-		return (NULL);
-	travelnode = *head;
+        while (temp->next)
+            temp = temp->next;
 
-	while (travelnode->next != NULL)
-		travelnode = travelnode->next;
+        temp->next = new_node;
+    }
 
-	travelnode->next = endnode;
-	endnode->dir = _strdup(dir);
-	endnode->next = (NULL);
-
-	return (endnode);
+    return (new_node);
 }

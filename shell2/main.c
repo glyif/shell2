@@ -19,7 +19,7 @@ int main(void)
 		len_line = getline(&line, &linelen, stdin);
 		line[len_line - 1] = '\0';
 		tok_args = tokenizer(line);
-		findpath(tok_args);
+		tok_args = findpath(tok_args);
 		pid = fork();
 		if (pid < 0)
 			perror("Fork did not work");
@@ -30,6 +30,7 @@ int main(void)
 		}
 		else
 			pid = wait(&status);
+		free(tok_args);
 	}
 /**free len_line/getline stuff, please - not sure how to do this**/
 	free((void *)len_line);

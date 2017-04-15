@@ -11,7 +11,6 @@ char **findpath(char **tok_args)
 	char *buffcopy;
 
 	head = path_link();
-
 	while(head != NULL)
 	{
 /** is this a safe way to free? **/
@@ -51,6 +50,7 @@ dirset_t *path_link(void)
 	head = NULL;
 	full_path = _getenv("PATH");
 	dir = strtok(full_path, ":");
+	printf("This is dir after first strtok in pathlink.c before while loop %s\n", dir);
 	while(full_path != NULL)
 	{
 		if(dir == NULL)
@@ -58,6 +58,7 @@ dirset_t *path_link(void)
 		if (dir != NULL)
 			add_node_end(&head, dir);
 		dir = strtok(NULL, ":");
+		printf("This is the dir in pathlink while statement %s\n", dir);
 	}
 	return(head);
 }

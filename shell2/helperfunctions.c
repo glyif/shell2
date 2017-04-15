@@ -47,22 +47,26 @@ char *_strdup(const char *str)
  */
 char *pathcat(char *dest, char *dir, char **tok_args)
 {
-	unsigned int i, j;
+	unsigned int i, j ,k;
 
 	i = 0;
 	j = 0;
-
 	while(dir[i] != '\0')
 	{
 		dest[i] = dir[i];
 		i++;
 	}
+	dest[i] = '/';
 	i++;
-	dir[i] = '/';
 	while(tok_args[j] != '\0')
 	{
-		dest[i] = tok_args[j][0];
-		i++;
+		k = 0;
+		while (tok_args[j][k] != '\0')
+		{
+			dest[i] = tok_args[j][k];
+			i++;
+			k++;
+		}
 		j++;
 	}
 	dest[i] = '\0';

@@ -6,34 +6,37 @@
  */
 char **findpath(char **tok_args)
 {
-	dirset_t *head;
+	dirset_t *head = NULL;
 	char *buff;
 	char *buffcopy;
 
 	head = path_link();
 	while(head != NULL)
 	{
-/** is this a safe way to free? **/
+/** is this a safe way to malloc? **/
 		buff = malloc(sizeof(char) * (_strlen(tok_args[0]) + _strlen(head->dir) + 2));
 		if(buff == NULL)
 			return(0);
 		pathcat(buff,head->dir, tok_args);
 		if(access(buff, X_OK) == 0)
 		{
+			printf("%s", buff);
 /**lacking confidence on how accurate this is **/
 			buffcopy = _strdup(buff);
 			tok_args[0] = buffcopy;
 			free(buff);
-			/**free linked list function to call here**/
+/**free linked list function to call here**/
+			free_path(head);
 			return(tok_args);
 		}
 		else
 		{
-			free(buff);
 			head = head->next;
 		}
 	}
+	free(buff);
 /**free linked list function to call here **/
+	free_path(head);
 	return(tok_args);
 }
 /**
@@ -50,7 +53,6 @@ dirset_t *path_link(void)
 	head = NULL;
 	full_path = _getenv("PATH");
 	dir = strtok(full_path, ":");
-	printf("This is dir after first strtok in pathlink.c before while loop %s\n", dir);
 	while(full_path != NULL)
 	{
 		if(dir == NULL)
@@ -58,7 +60,6 @@ dirset_t *path_link(void)
 		if (dir != NULL)
 			add_node_end(&head, dir);
 		dir = strtok(NULL, ":");
-		printf("This is the dir in pathlink while statement %s\n", dir);
 	}
 	return(head);
 }
